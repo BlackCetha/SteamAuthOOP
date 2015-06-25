@@ -39,6 +39,11 @@ You can find a basic list of variables in the demo file or a more advanced one i
 ```
 
 
+#Planned features
+* [ ] Streamline code
+* [ ] Rewrite HTTP-query sections to be more efficient
+* [ ] Add option to skip API-query if you just need the SteamID
+
 
 ###Legal stuff
 Since SteamAuthOOP uses the Steam Web-API you need to put the text "Powered by Steam" with a link to http://steampowered.com somewhere into your page.
