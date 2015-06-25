@@ -39,7 +39,7 @@ You can find a basic list of variables in the demo file or a more advanced one i
 ```
 
 
-#Planned features
+#Planned
 * [ ] Streamline code
 * [ ] Rewrite HTTP-query sections to be more efficient
 * [ ] Rewrite Syntax_Error's Code
