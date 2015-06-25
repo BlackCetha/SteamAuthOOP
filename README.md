@@ -20,7 +20,7 @@ Check if the user is logged in with
 (Will return true or false)
 
 
-Userdata is accessible through `$steam->varName;`
+User-Data is accessible through `$steam->varName;`
 You can find a basic list of variables in the demo file or a more advanced one in the code.
 
 
@@ -42,10 +42,11 @@ You can find a basic list of variables in the demo file or a more advanced one i
 #Planned features
 * [ ] Streamline code
 * [ ] Rewrite HTTP-query sections to be more efficient
+* [ ] Rewrite Syntax_Error's Code
 * [ ] Add option to skip API-query if you just need the SteamID
 
 
 #Legal stuff
-Since SteamAuthOOP uses the Steam Web-API you need to put the text "Powered by Steam" with a link to http://steampowered.com somewhere into your page.
+Since SteamAuthOOP is using the Steam Web-API you need to put the text "Powered by Steam" with a link to http://steampowered.com somewhere onto your page.
 
 The marked code is taken from Syntax_Error's "Ultra Simple Steam-Login" Class found here: http://forums.steampowered.com/forums/showthread.php?t=1430511
