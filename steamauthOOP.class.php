@@ -7,25 +7,25 @@
 */
 class steamauthOOP {
     public $steamid, $communityvisibilitystate, $profilestate, $personaname, $lastlogoff, $profileurl, $avatar, $avatarmedium, $avatarfull, $personastate, $realname, $primaryclanid, $timecreated, $gameserverip, $gameid, $gameextrainfo, $loccountrycode, $loccityid, $locstatecode = "";
-    private $startTime = microtime;
     private $settings = array(
         "apikey" => "", // Get yours today from http://steamcommunity.com/dev/apikey
         "domainname" => "", // Displayed domain in the login-screen
-        "loginpage" => "" // Returns to last page if not set
+        "loginpage" => "", // Returns to last page if not set
+        "logoutpage" => ""
     );
 
     function __construct() {
         if (session_id() == "") session_start();  // Start a session if none exists
         if ($this->settings["apikey"] == "") die("<b>SteamAuthOOP:</b> Please supply a valid API-Key!");
         if ($this->settings["loginpage"] == "") $this->settings["loginpage"] = /* [ */ (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME'];  // Code (c) 2010 ichimonai.com, released under MIT-License
-        if (isset($_GET["openid_assoc_handle"])) { // Did we just return from steam login-page? If so, validate idendity and save the data
+        if (isset($_GET["openid_assoc_handle"]) && !isset($_SESSION["steamdata"]["steamid"])) { // Did we just return from steam login-page? If so, validate idendity and save the data
             $steamid = $this->validate();
             if ($steamid != "") {  // ID Proven, get data from steam and save them
                 $apiresp = json_decode(file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=1D8373E5C0CB0ABBA50FE893F5019811&steamids=".$steamid),true);
                 foreach ($apiresp["response"]["players"][0] as $key => $value) $_SESSION["steamdata"][$key] = $value;
             }
         }
-        if (isset($_SESSION["steamdata"]["steamid"])) { // If we are logged in, make them accessable through $steam->var
+        if (isset($_SESSION["steamdata"]["steamid"])) { // If we are logged in, make user-data accessable through $steam->var
             foreach ($_SESSION["steamdata"] as $key => $value) $this->{$key} = $value;
         }
     }
@@ -104,10 +104,22 @@ class steamauthOOP {
         return preg_match("#is_valid\s*:\s*true#i", $result) == 1 ? $steamID64 : '';
     }
     function logout() {
+        if (!$this->loggedIn()) return false;
+        foreach ($_SESSION["steamdata"] as $key => $value) unset($this->{$key});
         unset($_SESSION["steamdata"]); // Delete the users info from the cache, DOESNT DESTROY YOUR SESSION!
+        if (!isset($_SESSION[0])) session_destroy();  // End the session if theres no more data in it
+        if ($this->settings["logoutpage"] != "") header("Location: ".$this->settings["logoutpage"]); // If the logout-page is set, go there
+        return true;
     }
     function loggedIn() {
         return (isset($_SESSION["steamdata"]["steamid"]) && $_SESSION["steamdata"]["steamid"] != "") ? true : false;
+    }
+    function forceReload() {
+        if (!isset($_SESSION["steamdata"]["steamid"])) return false; // User is not logged in, nothing to reload
+        $apiresp = json_decode(file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=1D8373E5C0CB0ABBA50FE893F5019811&steamids=".$_SESSION["steamdata"]["steamid"]),true);
+        foreach ($apiresp["response"]["players"][0] as $key => $value) $_SESSION["steamdata"][$key] = $value;
+        foreach ($_SESSION["steamdata"] as $key => $value) $this->{$key} = $value; // Make user-data accessable through $steam->var
+        return true;
     }
     /**
      * Prints debug information about steamauth
@@ -117,7 +129,6 @@ class steamauthOOP {
         echo "<pre>".print_r($this->settings,true)."</pre>";
         echo "<br><br><b>Data:</b><br>";
         echo "<pre>".print_r($_SESSION["steamdata"],true)."</pre>";
-        echo "<br><br><b>Generation time:</b> ".(microtime()-$this->startTime);
     }
 }
 ?>
