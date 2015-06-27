@@ -19,7 +19,7 @@ You can redirect the user to the steam loginscreen with
 `$steam->goToSteam();`
 
 If you want to have a link, go with
-`<a href="<?php $steam->loginUrl(); ?>">Link</a>`
+`<a href="<?php echo $steam->loginUrl(); ?>">Link</a>`
 
 
 Check if the user is logged in with
