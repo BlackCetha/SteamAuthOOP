@@ -1,6 +1,13 @@
 # SteamAuthOOP
 OOP-based rewrite of SmiTH197's SteamAuthentication https://github.com/smith197/steamauthentication
 
+#Features
+- One-File class
+- Easy to use
+- Easy to modify with commented code and function reference
+- Saves *all* information the Steam-API provides on a per-user basis
+- Doesnt recreate/delete your session if you use it elsewhere
+
 #Installation
 - Drop the `steamauthoop.class.php` file into your projects directory
 - Insert your API-Key from http://steamcommunity.com/dev/apikey into the config (`$settings["apikey"]`)
