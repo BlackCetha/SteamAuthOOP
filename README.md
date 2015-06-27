@@ -1,5 +1,5 @@
 # SteamAuthOOP
-OOP-based rewrite of SmiTH197's SteamAuthentication https://github.com/smith197/steamauthentication
+OOP-based Steam-Login library
 
 #Features
 - One-File class
