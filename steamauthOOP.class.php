@@ -3,7 +3,7 @@
  *
  * @author BlackCetha
  * A class for OpenID-logins with steam
- * @documentation http://github.com/blackcetha/steamauthoop
+ * @docs http://github.com/blackcetha/steamauthoop
 */
 class steamauthOOP {
     public $steamid, $communityvisibilitystate, $profilestate, $personaname, $lastlogoff, $profileurl, $avatar, $avatarmedium, $avatarfull, $personastate, $realname, $primaryclanid, $timecreated, $gameserverip, $gameid, $gameextrainfo, $loccountrycode, $loccityid, $locstatecode = "";
@@ -32,7 +32,7 @@ class steamauthOOP {
 
     /**
      * Generate SteamLogin-URL
-     * @copyright genUrl function (c) 2010 ichimonai.com, released under MIT-License
+     * @copyright loginUrl function (c) 2010 ichimonai.com, released under MIT-License
      * Modified by BlackCetha for OOP use
      */
     function loginUrl()
@@ -48,16 +48,9 @@ class steamauthOOP {
         return 'https://steamcommunity.com/openid/login' . '?' . http_build_query($params, '', "&");
     }
 
-    /**
-     * Redirects to steam-login
-     */
-    function goToSteam() {
-        header("Location: ".$this->loginUrl());
-    }
-
     /*
      * Validate data against Steam-Servers
-     * @copyright genUrl function (c) 2010 ichimonai.com, released under MIT-License
+     * @copyright validate function (c) 2010 ichimonai.com, released under MIT-License
      * Modified by BlackCetha for OOP use
      */
     private static function validate()
