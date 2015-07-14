@@ -3,6 +3,7 @@ OOP-based Steam-Login library
 
 #Features
 - One-File class
+- Doesnt rely on an external library
 - Easy to use
 - Easy to modify with commented code and function reference
 - Saves *all* information the Steam-API provides on a per-user basis
@@ -48,8 +49,6 @@ You can find a basic list of variables in the demo file or a more advanced one i
 
 #Planned
 * [ ] Streamline code
-* [ ] Rewrite HTTP-query sections to be more efficient
-* [ ] Rewrite Syntax_Error's Code
 * [ ] Add option to skip API-query if you just need the SteamID
 
 
