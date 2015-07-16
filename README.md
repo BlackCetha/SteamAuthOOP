@@ -16,9 +16,6 @@ OOP-based Steam-Login library
 - Initialize it with `$steam = new SteamAuthOOP();`
 
 #Basic usage
-You can redirect the user to the steam loginscreen with
-`$steam->goToSteam();`
-
 If you want to have a link, go with
 `<a href="<?php echo $steam->loginUrl(); ?>">Link</a>`
 
