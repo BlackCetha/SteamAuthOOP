@@ -45,7 +45,7 @@ You can find a basic list of variables in the demo file or a more advanced one i
 
 #Planned
 * [ ] Streamline code
-* [ ] Add option to skip API-query if you just need the SteamID
+* [x] Add option to skip API-query if you just need the SteamID
 
 
 #Legal stuff
