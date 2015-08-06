@@ -6,12 +6,12 @@
  * @docs http://github.com/blackcetha/steamauthoop
 */
 class steamauthOOP {
-    public $steamid, $communityvisibilitystate, $profilestate, $personaname, $lastlogoff, $profileurl, $avatar, $avatarmedium, $avatarfull, $personastate, $realname, $primaryclanid, $timecreated, $gameserverip, $gameid, $gameextrainfo, $loccountrycode, $loccityid, $locstatecode = "";
     private $settings = array(
         "apikey" => "", // Get yours today from http://steamcommunity.com/dev/apikey
         "domainname" => "", // Displayed domain in the login-screen
         "loginpage" => "", // Returns to last page if not set
-        "logoutpage" => ""
+        "logoutpage" => "",
+        "skipAPI" => false // Do not get the data from steam, just return the steamid64
     );
 
     function __construct() {
@@ -20,6 +20,10 @@ class steamauthOOP {
         if ($this->settings["loginpage"] == "") $this->settings["loginpage"] = /* [ */ (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME'];  // Code (c) 2010 ichimonai.com, released under MIT-License
         if (isset($_GET["openid_assoc_handle"]) && !isset($_SESSION["steamdata"]["steamid"])) { // Did we just return from steam login-page? If so, validate idendity and save the data
             $steamid = $this->validate();
+            if ($this->settings["skipAPI"]) {
+                $_SESSION["steamdata"]["steamid"] = $steamid;
+                return; // Skip API here
+            }
             if ($steamid != "") {  // ID Proven, get data from steam and save them
                 $apiresp = json_decode(file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=1D8373E5C0CB0ABBA50FE893F5019811&steamids=".$steamid),true);
                 foreach ($apiresp["response"]["players"][0] as $key => $value) $_SESSION["steamdata"][$key] = $value;
@@ -98,7 +102,6 @@ class steamauthOOP {
     }
     function logout() {
         if (!$this->loggedIn()) return false;
-        foreach ($_SESSION["steamdata"] as $key => $value) unset($this->{$key});
         unset($_SESSION["steamdata"]); // Delete the users info from the cache, DOESNT DESTROY YOUR SESSION!
         if (!isset($_SESSION[0])) session_destroy();  // End the session if theres no more data in it
         if ($this->settings["logoutpage"] != "") header("Location: ".$this->settings["logoutpage"]); // If the logout-page is set, go there
