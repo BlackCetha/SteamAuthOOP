@@ -25,7 +25,7 @@ class steamauthOOP {
                 return; // Skip API here
             }
             if ($steamid != "") {  // ID Proven, get data from steam and save them
-                $apiresp = json_decode(file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=1D8373E5C0CB0ABBA50FE893F5019811&steamids=".$steamid),true);
+                @$apiresp = json_decode(file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$this->settings["apikey"]."&steamids=".$steamid),true);
                 foreach ($apiresp["response"]["players"][0] as $key => $value) $_SESSION["steamdata"][$key] = $value;
             }
         }
@@ -112,7 +112,7 @@ class steamauthOOP {
     }
     function forceReload() {
         if (!isset($_SESSION["steamdata"]["steamid"])) return false; // User is not logged in, nothing to reload
-        $apiresp = json_decode(file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$this->settings["apikey"]."&steamids=".$_SESSION["steamdata"]["steamid"]),true);
+        @$apiresp = json_decode(file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$this->settings["apikey"]."&steamids=".$_SESSION["steamdata"]["steamid"]),true);
         foreach ($apiresp["response"]["players"][0] as $key => $value) $_SESSION["steamdata"][$key] = $value;
         foreach ($_SESSION["steamdata"] as $key => $value) $this->{$key} = $value; // Make user-data accessable through $steam->var
         return true;
