@@ -57,7 +57,7 @@ For example if a user calls himself `<script src='http://example.com/hacks.js'><
 You can prevent that by passing the string through `htmlspecialchars($string)`.
 
 ###SQL injection
-For example if a user calls himself `;-- DROP TABLE *` and you directly execute that as an SQL-query, you will loose all your data.
+For example if a user calls himself `"; DROP TABLE *;--` and you directly execute that as an SQL-query, you will loose all your data.
 
 You can prevent that by passing the strings through `mysqli_escape_string($link, $string)` or `$mysqli->escape_string($string)`.
 
