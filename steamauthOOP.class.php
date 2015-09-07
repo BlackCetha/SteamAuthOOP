@@ -11,7 +11,7 @@ class steamauthOOP {
         "domainname" => "", // Displayed domain in the login-screen
         "loginpage" => "", // Returns to last page if not set
         "logoutpage" => "",
-        "skipAPI" => false // Do not get the data from steam, just return the steamid64
+        "skipAPI" => false // true = dont get the data from steam, just return the steamid64
     );
 
     function __construct() {
