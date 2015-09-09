@@ -20,11 +20,11 @@ class steamauthOOP {
         if ($this->settings["loginpage"] == "") $this->settings["loginpage"] = /* [ */ (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME'];  // Code (c) 2010 ichimonai.com, released under MIT-License
         if (isset($_GET["openid_assoc_handle"]) && !isset($_SESSION["steamdata"]["steamid"])) { // Did we just return from steam login-page? If so, validate idendity and save the data
             $steamid = $this->validate();
-            if ($this->settings["skipAPI"]) {
-                $_SESSION["steamdata"]["steamid"] = $steamid;
-                return; // Skip API here
-            }
             if ($steamid != "") {  // ID Proven, get data from steam and save them
+                if ($this->settings["skipAPI"]) {
+                    $_SESSION["steamdata"]["steamid"] = $steamid;
+                    return; // Skip API here
+                }
                 @$apiresp = json_decode(file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$this->settings["apikey"]."&steamids=".$steamid),true);
                 foreach ($apiresp["response"]["players"][0] as $key => $value) $_SESSION["steamdata"][$key] = $value;
             }
