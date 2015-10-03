@@ -62,6 +62,7 @@ For example if a user calls himself `"; DROP TABLE *;--` and you directly execut
 You can prevent that by passing the strings through `mysqli_escape_string($link, $string)` or `$mysqli->escape_string($string)`.
 
 #Legal stuff
-Since SteamAuthOOP is using the Steam Web-API you need to put the text "Powered by Steam" with a link to http://steampowered.com somewhere onto your page.
+If you choose to use the steam web-api you need to follow the Steam Web API Terms of Use found at
+http://steamcommunity.com/dev/apiterms
 
-The marked code is taken from Syntax_Error's "Ultra Simple Steam-Login" Class found here: http://forums.steampowered.com/forums/showthread.php?t=1430511
+The marked code is taken from Syntax_Error's "Ultra Simple Steam-Login" Class found at http://forums.steampowered.com/forums/showthread.php?t=1430511
