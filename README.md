@@ -1,6 +1,10 @@
 # SteamAuthOOP
 OOP-based Steam-Login library
 
+###Note
+Please download the current stable release from the releases section.
+The current code in the master branch might be instable.
+
 #Features
 - One-File class
 - Doesnt rely on an external library
