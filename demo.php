@@ -49,9 +49,9 @@ if(!$steam->loggedIn()) {
 	<tr><td>\$steam->realname</td><td>".$steam->realname."</td><td>\"Real\" name</td></tr>
 	<tr><td>\$steam->primaryclanid</td><td>".$steam->primaryclanid."</td><td>The ID of the user's primary group</td></tr>
 	<tr><td>\$steam->timecreated</td><td>".$steam->timecreated."</td><td><a href='http://www.unixtimestamp.com/' target='_blank'>Unix timestamp</a> for the time the user's account was created</td></tr>
-	<tr><td>\$steam->avatar</td><td><img src='".$steam->avatar."'><br>".$steam->avatar."</td><td>Adress of the user's 32x32px avatar</td></tr>
-	<tr><td>\$steam->avatarmedium</td><td style=''><img src='".$steam->avatarmedium."'><br>".$steam->avatarmedium."</td><td>Adress of the user's 64x64px avatar</td></tr>
-	<tr><td>\$steam->avatarfull</td><td><img src='".$steam->avatarfull."'><br>".$steam->avatarfull."</td><td>Adress of the user's 184x184px avatar</td></tr>
+	<tr><td>\$steam->avatar</td><td><img src='".$steam->avatar."'><br>".$steam->avatar."</td><td>Address of the user's 32x32px avatar</td></tr>
+	<tr><td>\$steam->avatarmedium</td><td style=''><img src='".$steam->avatarmedium."'><br>".$steam->avatarmedium."</td><td>Address of the user's 64x64px avatar</td></tr>
+	<tr><td>\$steam->avatarfull</td><td><img src='".$steam->avatarfull."'><br>".$steam->avatarfull."</td><td>Address of the user's 184x184px avatar</td></tr>
 	</table>";
 	}    
 	?>
