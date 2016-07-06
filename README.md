@@ -2,7 +2,7 @@
 OOP-based Steam-Login library
 
 ####Support me
-#####![Flattr](https://flattr.com/submit/auto?fid=0y2enk&url=http%3A%2F%2Fgithub.com%2Fblackcetha%2Fsteamauthoop)
+#####https://flattr.com/submit/auto?fid=0y2enk&url=http%3A%2F%2Fgithub.com%2Fblackcetha%2Fsteamauthoop
 
 #Features
 - One-File class
