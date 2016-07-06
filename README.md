@@ -1,9 +1,8 @@
 # SteamAuthOOP
 OOP-based Steam-Login library
 
-###Note
-Please download the current stable release from the releases section.
-The current code in the master branch might be instable.
+####Support me
+#####![Flattr](https://flattr.com/submit/auto?fid=0y2enk&url=http%3A%2F%2Fgithub.com%2Fblackcetha%2Fsteamauthoop)
 
 #Features
 - One-File class
