@@ -25,7 +25,7 @@ class steamauthOOP {
                     $_SESSION["steamdata"]["steamid"] = $steamid;
                     return; // Skip API here
                 }
-                @$apiresp = json_decode(file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$this->settings["apikey"]."&steamids=".$steamid),true);
+                @$apiresp = json_decode(file_get_contents("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$this->settings["apikey"]."&steamids=".$steamid),true);
                 foreach ($apiresp["response"]["players"][0] as $key => $value) $_SESSION["steamdata"][$key] = $value;
             }
         }
