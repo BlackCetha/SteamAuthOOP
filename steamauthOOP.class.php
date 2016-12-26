@@ -91,7 +91,7 @@ class steamauthOOP {
             ),
         ));
 
-        $result = file_get_contents("http://steamcommunity.com/openid/login", false, $context);
+        $result = file_get_contents("https://steamcommunity.com/openid/login", false, $context);
 
         // Validate wheather it's true and if we have a good ID
         preg_match("#^http://steamcommunity.com/openid/id/([0-9]{17,25})#", $_GET['openid_claimed_id'], $matches);
@@ -112,7 +112,7 @@ class steamauthOOP {
     }
     function forceReload() {
         if (!isset($_SESSION["steamdata"]["steamid"])) return false; // User is not logged in, nothing to reload
-        @$apiresp = json_decode(file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$this->settings["apikey"]."&steamids=".$_SESSION["steamdata"]["steamid"]),true);
+        @$apiresp = json_decode(file_get_contents("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$this->settings["apikey"]."&steamids=".$_SESSION["steamdata"]["steamid"]),true);
         foreach ($apiresp["response"]["players"][0] as $key => $value) $_SESSION["steamdata"][$key] = $value;
         foreach ($_SESSION["steamdata"] as $key => $value) $this->{$key} = $value; // Make user-data accessable through $steam->var
         return true;
