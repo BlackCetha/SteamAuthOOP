@@ -1,7 +1,7 @@
 # SteamAuthOOP
 OOP-based Steam-Login library
 
-#Features
+# Features
 - One-File class
 - Doesnt rely on an external library
 - Easy to use
@@ -9,13 +9,13 @@ OOP-based Steam-Login library
 - Saves *all* information the Steam-API provides on a per-user basis
 - Doesnt recreate/delete your session if you use it elsewhere
 
-#Installation
+# Installation
 - Drop the `steamauthoop.class.php` file into your projects directory
 - Insert your API-Key from http://steamcommunity.com/dev/apikey into the config (`$settings["apikey"]`)
 - Include it with `require "steamauthoop.class.php";`
 - Initialize it with `$steam = new SteamAuthOOP();`
 
-#Basic usage
+# Basic usage
 If you want to have a link, go with
 `<a href="<?php echo $steam->loginUrl(); ?>">Link</a>`
 
@@ -29,7 +29,7 @@ User-Data is accessible through `$steam->varName;`
 You can find a basic list of variables in the demo file or a more advanced one in the code.
 
 
-###Example
+### Example
 
 ```php
 <?php
@@ -43,25 +43,25 @@ You can find a basic list of variables in the demo file or a more advanced one i
 ?>
 ```
 
-#Planned
-* [ ] Streamline code
-* [x] Add option to skip API-query if you just need the SteamID
+# Planned
+Nothing at the moment.
+Open an issue if you think there is something that could be better.
 
-#Data security
+# Data security
 The library does not deliver safe/escaped data as it would limit the functionality.
 This will leave your site vulnerable to cross-site-scripting ("XSS") and SQL-injection attacks if you dont take actions to prevent them.
 
-###XSS
+### XSS
 For example if a user calls himself `<script src='http://example.com/hacks.js'></script>` and you print that name to other users, their browser will download `hacks.js`.
 
 You can prevent that by passing the string through `htmlspecialchars($string)`.
 
-###SQL injection
+### SQL injection
 For example if a user calls himself `"; DROP TABLE *;--` and you directly execute that as an SQL-query, you will loose all your data.
 
 You can prevent that by passing the strings through `mysqli_escape_string($link, $string)` or `$mysqli->escape_string($string)`.
 
-#Legal stuff
+# Legal stuff
 If you choose to use the steam web-api you need to follow the Steam Web API Terms of Use found at
 http://steamcommunity.com/dev/apiterms
 
